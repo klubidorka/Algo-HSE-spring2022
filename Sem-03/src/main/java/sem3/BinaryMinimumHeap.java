@@ -7,35 +7,25 @@ import java.util.List;
 public class BinaryMinimumHeap {
     BinaryMinimumHeap() {
         storage = new ArrayList<>();
-        size = 0;
     }
 
-    BinaryMinimumHeap(int initialCapacity) {
-        storage = new ArrayList<>(initialCapacity);
-        size = 0;
-    }
-
-    BinaryMinimumHeap(List<Long> elements) {
+    BinaryMinimumHeap(List<Integer> elements) {
         storage = new ArrayList<>(elements);
-        size = storage.size();
-//        buildHeapSlow();
         buildHeapFast();
     }
 
-
-    public void addElement(Long element) {
+    public void addElement(int element) {
         storage.add(element);
-        siftUp(size);
-        size += 1;
+        siftUp(storage.size() - 1);
     }
 
-    public long extractMinElement() {
-        if (size == 0) {
+    public int extractMinElement() {
+        if (storage.isEmpty()) {
             throw new RuntimeException("Heap is empty");
         }
-        long minElement = storage.get(0);
-        size -= 1;
-        storage.set(0, storage.get(size));
+        int minElement = storage.get(0);
+        storage.set(0, storage.get(storage.size() - 1));
+        storage.remove(storage.size() - 1);
         siftDown(0);
         return minElement;
     }
@@ -48,7 +38,6 @@ public class BinaryMinimumHeap {
         for (int i = 1; i < storage.size(); i++) {
             siftUp(i);
         }
-        size = storage.size();
     }
 
     /**
@@ -59,7 +48,6 @@ public class BinaryMinimumHeap {
         for (int i = storage.size() / 2; i >= 0; i--) {
             siftDown(i);
         }
-        size = storage.size();
     }
 
     /**
@@ -71,7 +59,7 @@ public class BinaryMinimumHeap {
         // while element is not the root
         while (idx > 0) {
             int parentIdx = (idx - 1) / 2;
-            if (storage.get(idx) > storage.get(parentIdx)) {
+            if (storage.get(idx) < storage.get(parentIdx)) {
                 // Heap invariant is valid for idx
                 return;
             }
@@ -87,11 +75,11 @@ public class BinaryMinimumHeap {
      */
     private void siftDown(int idx) {
         // while at least one child exists
-        while (idx * 2 + 1 < size) {
+        while (idx * 2 + 1 < storage.size()) {
             final int leftChildIdx = idx * 2 + 1;
             final int rightChildIdx = idx * 2 + 2;
             int leastChildIdx = leftChildIdx;
-            if (rightChildIdx < size && storage.get(rightChildIdx) < storage.get(leftChildIdx)) {
+            if (rightChildIdx < storage.size() && storage.get(rightChildIdx) < storage.get(leftChildIdx)) {
                 leastChildIdx = rightChildIdx;
             }
             if (storage.get(idx) <= storage.get(leastChildIdx)) {
@@ -104,11 +92,10 @@ public class BinaryMinimumHeap {
     }
 
     private void swapElementsAt(int i, int j) {
-        long temp = storage.get(i);
+        int temp = storage.get(i);
         storage.set(i, storage.get(j));
         storage.set(j, temp);
     }
 
-    private final List<Long> storage;
-    private int size;
+    private final List<Integer> storage;
 }

@@ -11,10 +11,10 @@ import java.util.stream.Collectors;
 public class HeapTest {
     @Test
     void sortTest() {
-        final int SIZE = 10_000_000;
-        List<Long> longs = new Random().longs(SIZE).boxed().collect(Collectors.toList());
+        final int SIZE = 100_000;
+        List<Integer> longs = new Random().ints(SIZE).boxed().collect(Collectors.toList());
         BinaryMinimumHeap heap = new BinaryMinimumHeap(longs);
-        List<Long> sortedLongs = new ArrayList<>(SIZE);
+        List<Integer> sortedLongs = new ArrayList<>(SIZE);
         for (int i = 0; i < SIZE; i++) {
             sortedLongs.add(heap.extractMinElement());
         }
@@ -22,5 +22,4 @@ public class HeapTest {
             assert (sortedLongs.get(i) <= sortedLongs.get(i + 1));
         }
     }
-
 }
