@@ -1,7 +1,6 @@
 package sem3;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 
 public class BinaryMinimumHeap {
@@ -59,7 +58,7 @@ public class BinaryMinimumHeap {
         // while element is not the root
         while (idx > 0) {
             int parentIdx = (idx - 1) / 2;
-            if (storage.get(idx) < storage.get(parentIdx)) {
+            if (storage.get(idx) > storage.get(parentIdx)) {
                 // Heap invariant is valid for idx
                 return;
             }
