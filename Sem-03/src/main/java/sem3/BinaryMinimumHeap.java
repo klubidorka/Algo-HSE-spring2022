@@ -3,9 +3,7 @@ package sem3;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Двоичная куча на минимум
- */
+
 public class BinaryMinimumHeap {
     BinaryMinimumHeap() {
         storage = new ArrayList<>();
@@ -43,7 +41,7 @@ public class BinaryMinimumHeap {
     }
 
     /**
-     * Build heap adding elements one by one and then sift element  up.
+     * Build heap adding elements one by one and then sift element up
      * Time complexity: O(NlogN)
      */
     private void buildHeapSlow() {
@@ -54,7 +52,7 @@ public class BinaryMinimumHeap {
     }
 
     /**
-     * Build heap adding elements one by one and then sift element  up.
+     * Build heap adding elements one by one and then sift element down
      * Time complexity: O(N)
      */
     private void buildHeapFast() {
