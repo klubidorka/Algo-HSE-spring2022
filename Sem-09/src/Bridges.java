@@ -3,23 +3,7 @@ import java.util.*;
 
 public class Bridges {
     private static void dfs(int v, int p) {
-        visited[v] = true;
-        enter[v] = timer++;
-        ret[v] = enter[v];
-        for (Edge e : graph.get(v)) {
-            int u = e.to;
-            int num = e.num;
-            if (num == p)
-                continue;
-
-            if (!visited[u]) {
-                dfs(u, num);
-                ret[v] = Math.min(ret[v], ret[u]);
-                if (ret[u] > enter[v])
-                    res.add(num);
-            } else
-                ret[v] = Math.min(ret[v], enter[u]);
-        }
+        // TODO
     }
 
     private static void readGraph() {
