@@ -27,18 +27,7 @@ public class Task {
     }
 
     private static void solve() {
-        AbstractSegmentTree<Integer> countZerosST = new AbstractSegmentTree<>(ints) {
-            @Override
-            protected Integer getNeutralElement() {
-                return 0;
-            }
-
-            @Override
-            protected Integer operation(Integer left, Integer right) {
-                return left + right;
-            }
-        };
-
+        STSum countZerosST = new STSum(ints);
         answer = new ArrayList<>(queries.size());
         for (List<Integer> query : queries) {
             answer.add(countZerosST.resultOnSegment(query.get(0), query.get(1)));
