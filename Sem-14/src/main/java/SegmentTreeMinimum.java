@@ -34,13 +34,10 @@ public class SegmentTreeMinimum {
      * @return минимум на полуинтервале [left, right)
      */
     private int minOnSegment(int left, int right, int i, int iLeft, int iRight) {
-
         if (left <= iLeft && right >= iRight) // текущий полуинтервал вкладывается в искомый
             return tree.get(i);
-
         if (iLeft >= right || iRight <= left) // текущий полуинтервал не пересекается с искомым
             return Integer.MAX_VALUE;
-
         int iMiddle = (iLeft + iRight) / 2;
         int minLeft = minOnSegment(left, right, 2 * i + 1, iLeft, iMiddle);
         int minRight = minOnSegment(left, right, 2 * i + 2, iMiddle, iRight);

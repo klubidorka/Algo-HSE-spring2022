@@ -1,4 +1,6 @@
-package abstract_segment_tree;
+package task;
+
+import abstract_segment_tree.STSum;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +10,7 @@ import java.util.Scanner;
  * Решение задачи
  * https://informatics.msk.ru/mod/statements/view.php?id=42416&chapterid=3313#1
  */
-public class Task {
+public class SegmentTreeSolution {
     private static void read() {
         Scanner sc = new Scanner(System.in);
         int size = sc.nextInt();
